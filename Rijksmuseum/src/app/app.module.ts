@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialDesignModule } from './material-design/material-design.module.ts';
-
+import { MaterialDesignModule } from './material-design/material-design.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     MaterialDesignModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
