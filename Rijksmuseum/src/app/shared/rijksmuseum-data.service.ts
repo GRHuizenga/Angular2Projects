@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class RijksmuseumDataService {
-  private baseURL: string = 'https://www.rijksmuseum.nl/api/nl/collection?q=rembrandt&key=4DQ6B8sF&format=json';
+  private baseURL: string = 'https://www.rijksmuseum.nl/api/nl/collection?q=Q&ps=100&key=4DQ6B8sF&format=json';
   private apiKey: string = '4DQ6B8sF';
 
   constructor(private http: HttpClient) { }
@@ -18,7 +18,7 @@ export class RijksmuseumDataService {
   }
 
   public SearchByMaker(maker: string): Observable<ArtObject[]> {
-    return this.http.get<RijksmuseumResponse>(this.baseURL)
+    return this.http.get<RijksmuseumResponse>(this.baseURL.replace('q=Q', 'q=' + maker))
       .map((response: RijksmuseumResponse) => {
         console.log(response.artObjects);
         return response.artObjects;

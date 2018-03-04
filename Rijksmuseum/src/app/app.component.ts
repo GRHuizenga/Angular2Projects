@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log('In onInit...getting data...');
-    this.getByMaker('Rembrandt');
+    //this.getByMaker('Rembrandt');
   }
 
   setRowspan(artObjects: ArtObject[]): ArtObject[] {
@@ -31,14 +31,10 @@ export class AppComponent implements OnInit {
       let img = new Image();
       img['ao'] = artObject;
       img.addEventListener('load', function() {
-        //debugger;
         let factor: number = tileWidth / this.naturalWidth;
         let desiredHeight: number = factor * this.naturalHeight;
-        //let rowspan: number = desiredHeight / 100;
-        //this['ao'].rowspan = rowspan;
         this['ao'].webImage.width = 337.25;
         this['ao'].webImage.height = desiredHeight;
-        //console.log('width: ' + this.naturalWidth + ' height: ' + this.naturalHeight + ' rowspan: ' + rowspan);
       });
       img.src = artObject.webImage.url;
     })
@@ -46,8 +42,9 @@ export class AppComponent implements OnInit {
     return artObjects;
   }
 
-  getByMaker(maker: string) {
-    this.artObjects$ = this.service.SearchByMaker(maker)
+  search(searchTerm: string) {
+    this.artObjects$ = this.service.SearchByMaker(searchTerm)
+      .map((artObjects: ArtObject[]) => artObjects.filter((artObject: ArtObject) => artObject.hasImage))
       .map((artObjects: ArtObject[]) => this.setRowspan(artObjects));
   }
 
