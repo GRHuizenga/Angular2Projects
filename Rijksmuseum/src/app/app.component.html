@@ -1,7 +1,14 @@
-<div *ngIf="artObjects$">
-  <mat-grid-list cols="{{cols}}" rowHeight="100px" gutterSize="20px">
-    <mat-grid-tile *ngFor="let artObject of artObjects$ | async" [rowspan]="2" [colspan]="1">
-      <img #allTheseThings style="max-width: 100%" src="{{artObject.webImage.url}}">
-    </mat-grid-tile>
-  </mat-grid-list>
+<div style="height: 150px; width: 100%;">
+  <div style="margin: 20px auto 0; width: 350px;">
+    <mat-form-field style="width: 250px">
+      <input matInput placeholder="e.g. Rembrandt">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Search!</button>
+  </div>
+</div>
+
+<div style="column-count: 4; column-gap: 10px;">
+  <div *ngFor="let artObject of artObjects$ | async" style="padding: 5px; background-color: white; margin-bottom: 10px;">
+    <img src="{{artObject.webImage.url}}" style="width: 100% !important; height: auto !important;" />
+  </div>
 </div>
