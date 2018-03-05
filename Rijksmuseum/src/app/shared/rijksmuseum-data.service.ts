@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class RijksmuseumDataService {
-  private baseURL: string = 'https://www.rijksmuseum.nl/api/nl/collection?q=Q&ps=100&key=4DQ6B8sF&format=json';
+  private baseURL: string = 'https://www.rijksmuseum.nl/api/nl/collection?q=Q&ps=10&key=4DQ6B8sF&format=json';
   private apiKey: string = '4DQ6B8sF';
 
   constructor(private http: HttpClient) { }

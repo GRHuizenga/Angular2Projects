@@ -1,1 +1,27 @@
+mat-card {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 10px;
+}
 
+mat-card-header, mat-card-actions {
+  padding: 20px 20px 4px 20px;
+}
+
+.mat-card-actions {
+  margin: 0;
+  padding: 0;
+}
+
+.mat-card > .mat-card-actions:last-child {
+  margin: 0;
+}
+
+.mat-card-image {
+  margin: 0;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+
+/*<img src="{{artObject.webImage.url}}" style="width: 100% !important; height: auto !important;" />*/

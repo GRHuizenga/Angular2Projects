@@ -19,36 +19,10 @@ export class AppComponent implements OnInit {
 
   constructor(private service: RijksmuseumDataService) {}
 
-  ngOnInit() {
-    console.log('In onInit...getting data...');
-    //this.getByMaker('Rembrandt');
-  }
-
-  setRowspan(artObjects: ArtObject[]): ArtObject[] {
-
-    artObjects.forEach((artObject: ArtObject) => {
-      let tileWidth: number = 337.25;
-      let img = new Image();
-      img['ao'] = artObject;
-      img.addEventListener('load', function() {
-        let factor: number = tileWidth / this.naturalWidth;
-        let desiredHeight: number = factor * this.naturalHeight;
-        this['ao'].webImage.width = 337.25;
-        this['ao'].webImage.height = desiredHeight;
-      });
-      img.src = artObject.webImage.url;
-    })
-
-    return artObjects;
-  }
+  ngOnInit() {}
 
   search(searchTerm: string) {
     this.artObjects$ = this.service.SearchByMaker(searchTerm)
-      .map((artObjects: ArtObject[]) => artObjects.filter((artObject: ArtObject) => artObject.hasImage))
-      .map((artObjects: ArtObject[]) => this.setRowspan(artObjects));
-  }
-
-  getData() {
-    this.artObjects$ = this.service.getObjects();
+      .map((artObjects: ArtObject[]) => artObjects.filter((artObject: ArtObject) => artObject.hasImage));
   }
 }
