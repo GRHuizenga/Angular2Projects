@@ -12,7 +12,7 @@ import 'rxjs/Rx';
 })
 
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'Rijksmuseum';
   cols: number = 4;
   gutterSize: number = 20;
   artObjects$: Observable<ArtObject[]>;
