@@ -1,3 +1,15 @@
 <div *ngIf="(artObjectDetail$ | async) as detail">
-  
+  <img src="{{detail.webImage.url}}" class="fitted-image">
+
+  <button mat-icon-button disableRipple>
+    <mat-icon color="accent" aria-label="Show info">info</mat-icon>
+  </button>
 </div>
+<!--
+<img *ngIf="(headerImageUrl$ | async) as url" src="{{url}}" class="fitted-image">
+
+<div *ngIf="(artObjectDetail$ | async) as detail">
+  <p>Titel:</p>
+  {{detail.title}}
+</div>
+-->
