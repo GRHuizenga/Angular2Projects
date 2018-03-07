@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { ArtObjectDetailComponent } from './art-object-detail/art-object-detail.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ArtObjectDetailComponent,
   ],
   imports: [
     BrowserModule,

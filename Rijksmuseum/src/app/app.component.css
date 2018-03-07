@@ -37,6 +37,3 @@ mat-card-header, mat-card-actions {
   max-width: 100% !important;
   height: auto !important;
 }
-
-
-/*<img src="{{artObject.webImage.url}}" style="width: 100% !important; height: auto !important;" />*/
