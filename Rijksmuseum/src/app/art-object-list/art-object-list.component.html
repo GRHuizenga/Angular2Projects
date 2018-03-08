@@ -7,6 +7,14 @@
   </div>
 </div>
 
+<mat-paginator [ngClass]="{'hide' : !showPaginator}"
+               [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent($event)"
+               style="width: 100%;">
+</mat-paginator>
+
 <div *ngIf="(artObjects$ | async) as artObjects" class="card-gallery">
   <div *ngFor="let artObject of artObjects" class="tile">
     <mat-card>

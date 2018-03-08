@@ -1,11 +1,16 @@
 .card-gallery {
   column-count: 4;
   column-gap: 10px;
+  margin-top: 10px;
 }
 
 .tile {
   display: inline-block;
   width: 100%;
+}
+
+.hide {
+  display: none;
 }
 
 mat-card {

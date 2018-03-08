@@ -11,7 +11,6 @@ export class RijksmuseumDataService {
   //private detailURL: string = 'https://www.rijksmuseum.nl/api/nl/collection/SK-C-5?key=4DQ6B8sF&format=json';
   private apiKey: string = '4DQ6B8sF';
   private format: string = 'json';
-  private resultsPerPage: number = 25;
 
   constructor(private http: HttpClient) { }
 
@@ -31,10 +30,7 @@ export class RijksmuseumDataService {
       })
   }
 
-  public Search(searchTerm: string, page: number): Observable<ArtObject[]> {
-    return this.http.get<CollectionResponse>(`${this.baseURL}?q=${searchTerm}&p={page}&ps=${this.resultsPerPage}&key=${this.apiKey}&format=${this.format}`)
-      .map((response: CollectionResponse) => {
-        return response.artObjects;
-      });
+  public Search(searchTerm: string, page: number, resultsPerPage: number): Observable<CollectionResponse> {
+    return this.http.get<CollectionResponse>(`${this.baseURL}?q=${searchTerm}&p=${page}&ps=${resultsPerPage}&key=${this.apiKey}&format=${this.format}`);
   }
 }

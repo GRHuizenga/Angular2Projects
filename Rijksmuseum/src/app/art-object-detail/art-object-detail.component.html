@@ -1,15 +1,43 @@
 <div *ngIf="(artObjectDetail$ | async) as detail">
   <img src="{{detail.webImage.url}}" class="fitted-image">
 
-  <button mat-icon-button disableRipple>
+  <button mat-icon-button disableRipple (click)="toggleShowStepper()">
     <mat-icon color="accent" aria-label="Show info">info</mat-icon>
   </button>
-</div>
-<!--
-<img *ngIf="(headerImageUrl$ | async) as url" src="{{url}}" class="fitted-image">
 
-<div *ngIf="(artObjectDetail$ | async) as detail">
-  <p>Titel:</p>
-  {{detail.title}}
+  <mat-horizontal-stepper *ngIf="showStepper" [linear]="false" #stepper="matHorizontalStepper">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Maker</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Kunstobject</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!--
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  -->
+  </mat-horizontal-stepper>
 </div>
--->

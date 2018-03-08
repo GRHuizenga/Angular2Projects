@@ -5,6 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -15,6 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    MatStepperModule,
+    MatPaginatorModule,
   ],
   exports: [
   	MatButtonModule,
@@ -23,6 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    MatStepperModule,
+    MatPaginatorModule,
   ],
   declarations: []
 })
