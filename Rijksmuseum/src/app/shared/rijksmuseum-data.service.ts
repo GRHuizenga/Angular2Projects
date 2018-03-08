@@ -17,6 +17,7 @@ export class RijksmuseumDataService {
   public getArtObjectByID(id: string): Observable<ArtObjectDetail> {
     return this.http.get<CollectionDetailResponse>(`${this.baseURL}/${id}?key=${this.apiKey}&format=${this.format}`)
       .map((response: CollectionDetailResponse) => {
+        console.log(response.artObject);
         return response.artObject;
       });
   }

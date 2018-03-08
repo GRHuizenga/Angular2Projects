@@ -1,43 +1,68 @@
 <div *ngIf="(artObjectDetail$ | async) as detail">
   <img src="{{detail.webImage.url}}" class="fitted-image">
 
-  <button mat-icon-button disableRipple (click)="toggleShowStepper()">
+  <button class="info-button" mat-icon-button disableRipple (click)="toggleShowStepper()">
     <mat-icon color="accent" aria-label="Show info">info</mat-icon>
   </button>
 
   <mat-horizontal-stepper *ngIf="showStepper" [linear]="false" #stepper="matHorizontalStepper">
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Maker</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Kunstobject</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Address" formControlName="secondCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <!--
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>Maker</ng-template>
+      <div class="list-wrapper">
+        <mat-list>
+          <h2 mat-subheader>Algemeen</h2>
+          <mat-list-item><span><b>Naam: </b></span>{{detail.principalMaker}}</mat-list-item>
+          <mat-list-item><span><b>Nationaliteit: </b></span>{{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.nationality || "-"}}</mat-list-item>
+          <mat-list-item><span><b>Geboorteplaats: </b></span>{{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.placeOfBirth}}</mat-list-item>
+          <mat-list-item><span><b>Sterfplaats: </b></span>{{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.placeOfDeath}}</mat-list-item>
+          <mat-list-item><span><b>Beroep: </b></span>{{formatStringArray(getPrincipalMaker(detail.principalMaker, detail.principalMakers).occupation)}}</mat-list-item>
+          <mat-list-item><span><b>Rollen: </b></span>{{formatStringArray(getPrincipalMaker(detail.principalMaker, detail.principalMakers).roles)}}</mat-list-item>
+
+          <mat-divider></mat-divider>
+          <h2 mat-subheader>Belangrijke data</h2>
+          <mat-list-item>
+            <span><b>Geboortedatum: </b></span>
+            {{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.dateOfBirthPrecision}} {{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.dateOfBirth}}
+          </mat-list-item>
+          <mat-list-item>
+            <span><b>Sterfdatum: </b></span>
+            {{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.dateOfDeathPrecision}} {{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.dateOfDeath}}
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="list-wrapper">
+        <h3>Biografie</h3>
+        <p>{{getPrincipalMaker(detail.principalMaker, detail.principalMakers)?.biography || "Niet beschikbaar"}}</p>
       </div>
     </mat-step>
-  -->
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>Kunstobject</ng-template>
+      <div class="list-wrapper">
+        <mat-list>
+          <h2 mat-subheader>Algemeen</h2>
+          <mat-list-item><span><b>Titel: </b></span>{{detail.title}}</mat-list-item>
+          <mat-list-item><span><b>Datering: </b></span>{{detail.dating.presentingDate}}</mat-list-item>
+
+          <mat-divider></mat-divider>
+          <h2 mat-subheader>Materiaal en Techniek</h2>
+          <mat-list-item><span><b>Fysieke kenmerken: </b></span>{{detail.physicalMedium}}</mat-list-item>
+          <mat-list-item><span><b>Materiaal: </b></span>{{formatStringArray(detail.materials)}}</mat-list-item>
+          <mat-list-item><span><b>Afmetingen: </b></span>{{detail.subTitle}}</mat-list-item>
+
+          <mat-divider></mat-divider>
+          <h2 mat-subheader>Kleuren</h2>
+          <mat-list-item>
+            <span><b>Kleurenpalette: </b></span>
+            <div class="color-palette">
+              <div *ngFor="let color of detail.colors" [style.background-color]="color" class="color-palette-detail"></div>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="list-wrapper">
+        <h3>Omschrijving</h3>
+        <p>{{detail.plaqueDescriptionDutch || "Niet beschikbaar"}}</p>
+      </div>
+    </mat-step>
   </mat-horizontal-stepper>
 </div>

@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatStepperModule,
     MatPaginatorModule,
+    MatListModule,
   ],
   exports: [
   	MatButtonModule,
@@ -29,6 +31,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatStepperModule,
     MatPaginatorModule,
+    MatListModule,
   ],
   declarations: []
 })

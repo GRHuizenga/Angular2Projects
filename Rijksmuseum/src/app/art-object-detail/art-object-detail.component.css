@@ -1,3 +1,31 @@
+.list-wrapper {
+  width: 50%;
+  float: left;
+}
+
+.list-wrapper h2 {
+  font-size: 24px;
+  font-style: italic;
+}
+
+.list-wrapper .color-palette-detail {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.list-wrapper span {
+  width: 40%;
+}
+
+.list-wrapper p, .list-wrapper h3 {
+  color: white;
+}
+
+.mat-step-icon .mat-icon {
+  display: none;
+}
+
 .detail-wrapper {
   position: relative;
 }
@@ -8,7 +36,7 @@
   object-fit: cover;
 }
 
-button {
+button.info-button {
   position: absolute;
   top: 20px;
   left: 20px;

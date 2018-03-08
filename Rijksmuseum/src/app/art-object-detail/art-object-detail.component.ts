@@ -1,12 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RijksmuseumDataService } from '../shared/rijksmuseum-data.service';
 import { ArtObject } from '../shared/collection-response';
-import { ArtObjectDetail } from '../shared/collection-detail-response';
+import { ArtObjectDetail, PrincipalMaker } from '../shared/collection-detail-response';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-art-object-detail',
@@ -15,34 +14,33 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./art-object-detail.component.css']
 })
 export class ArtObjectDetailComponent implements OnInit {
-  @Input() headerImageUrl: string;
   artObjectDetail$: Observable<ArtObjectDetail>;
   headerImageUrl$: Observable<string>;
   showStepper: boolean = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  principalMaker: PrincipalMaker;
 
   constructor(
     private service: RijksmuseumDataService,
     private route: ActivatedRoute,
     private location: Location,
-    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
     const id: string = this.route.snapshot.paramMap.get('id');
     this.headerImageUrl$ = this.service.getHeaderImageUrl(id);
     this.artObjectDetail$ = this.service.getArtObjectByID(id);
-    this.buildFormGroups();
   }
 
-  buildFormGroups(): void {
-    this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ['']
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ['']
-    });
+  getPrincipalMaker(name: string, makers: PrincipalMaker[]): PrincipalMaker {
+    if (!this.principalMaker) {
+      this.principalMaker = makers.find((maker: PrincipalMaker) => maker.name == name);
+    }
+
+    return this.principalMaker;
+  }
+
+  formatStringArray(strings: string[]): string {
+    return strings.join(', ');
   }
 
   toggleShowStepper(): void {
